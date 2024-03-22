@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/top_bar"
-                android:padding="16dp">
+                android:padding="2dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="80dp"
@@ -118,6 +118,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:maxLines="1"
                                 android:text="followers"/>
 
                         </LinearLayout>
@@ -140,7 +141,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="following"/>
+                                android:text="following"
+                                android:maxLines="1"/>
 
                         </LinearLayout>
 
