@@ -124,12 +124,12 @@ public class HomeFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Post post = snapshot.getValue(Post.class);
                     Log.d("POST VALUE", post.getDescription());
-//                    for (String id : followingList) {
-//                        if (post.getPublisher().equals(id)) {
-//                            postList.add(post);
-//                        }
-//                    }
-                    postList.add(post);
+                    for (String id : followingList) {
+                        if (post.getPublisher().equals(id)) {
+                            postList.add(post); // to only show following or follower feeds.
+                        }
+                    }
+//                    postList.add(post); Only used for testing.
                 }
 
                 Log.d("POST FETCH","COUNT "+postList.size());
