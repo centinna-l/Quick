@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
                 } else if (menuItemId == R.id.nav_heart) {
                     selectorFragment = new NotificationFragment();
                 } else if (menuItemId == R.id.nav_profile) {
-//                    SharedPreferences.Editor editor = getBaseContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
-//                    editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
-//                    editor.apply();
+                    SharedPreferences.Editor editor = getBaseContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                    editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    editor.apply();
                     selectorFragment = new ProfileFragment();
                 }
                 if (selectorFragment != null){
