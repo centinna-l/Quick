@@ -22,7 +22,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/ic_add_story"
+            android:src="@drawable/ic_add"
             android:id="@+id/story_plus"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"/>

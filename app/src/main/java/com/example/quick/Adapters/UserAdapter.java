@@ -3,6 +3,7 @@ package com.example.quick.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.btn_follow.setVisibility(View.VISIBLE);
 
         holder.username.setText(user.getUsername());
-        holder.fullname.setText(user.getFullname());
+        holder.fullname.setText(user.getName());
         Picasso.get().load(user.getImageurl()).placeholder(R.drawable.default_avatar).into(holder.image_profile);
         isFollowed(user.getId(), holder.btn_follow);
 
@@ -73,14 +74,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 if (isFragment) {
+                    Log.d("Item VIEW", "IS Fragment");
                     SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
                     editor.putString("profileid", user.getId());
                     editor.apply();
 
                     ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
                 } else {
+                    Log.d("Item VIEW", "Not a Fragment "+ user.getUsername());
                     Intent intent = new Intent(mContext, MainActivity.class);
-                    intent.putExtra("publisherid", user.getId());
+                    intent.putExtra("publisherId", user.getId());
                     mContext.startActivity(intent);
                 }
             }

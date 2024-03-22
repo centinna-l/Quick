@@ -3,17 +3,17 @@ package com.example.quick.Models;
 public class User {
     private String id;
     private String username;
-    private String fullname;
+    private String name;
     private String imageurl;
     private String bio;
 
     public User() {
     }
 
-    public User(String id, String username, String fullname, String imageurl, String bio) {
+    public User(String id, String username, String name, String imageurl, String bio) {
         this.id = id;
         this.username = username;
-        this.fullname = fullname;
+        this.name = name;
         this.imageurl = imageurl;
         this.bio = bio;
     }
@@ -34,12 +34,12 @@ public class User {
         this.username = username;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getName() {
+        return name;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getImageurl() {

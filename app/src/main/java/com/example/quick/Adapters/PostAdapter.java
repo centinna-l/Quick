@@ -14,7 +14,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import com.example.quick.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,11 +30,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,12 +42,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.quick.MainActivity;
-import com.example.quick.Models.Post;
-
 import java.util.HashMap;
-import java.util.List;
-
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
@@ -75,6 +69,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull PostAdapter.ViewHolder holder, int position) {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final Post post = mPost.get(position);
+
+        Log.d("POST IMAGE", post.getPostimage());
+
+//        if(!post.getPostimage().toLowerCase().trim().equals("default")){
+//            Picasso.get().load(post.getPostimage()).placeholder(R.drawable.default_avatar).into(holder.post_image);
+//        }
 
         Picasso.get().load(post.getPostimage()).placeholder(R.drawable.default_avatar).into(holder.post_image);
 
@@ -351,7 +351,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 User user = dataSnapshot.getValue(User.class);
                 Picasso.get().load(user.getImageurl()).placeholder(R.drawable.default_avatar).into(image_profile);
                 username.setText(user.getUsername());
-                publisher.setText(user.getFullname());
+                publisher.setText(user.getName());
             }
 
             @Override
