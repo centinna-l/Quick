@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Context context = this;
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -48,13 +50,17 @@ public class MainActivity extends AppCompatActivity {
                 } else if (menuItemId == R.id.nav_heart) {
                     selectorFragment = new NotificationFragment();
                 } else if (menuItemId == R.id.nav_profile) {
+
+
                     SharedPreferences.Editor editor = getBaseContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
                     editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
                     editor.apply();
+
+                    Log.d("AFTER INTENT", getBaseContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE).getString("profileid", "none"));
                     selectorFragment = new ProfileFragment();
                 }
-                if (selectorFragment != null){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , selectorFragment).commit();
+                if (selectorFragment != null) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectorFragment).commit();
                 }
                 return true;
             }
@@ -62,14 +68,19 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle intent = getIntent().getExtras();
         if (intent != null) {
+            bottomNavigationView.setSelectedItemId(R.id.nav_profile); // This Line should before
+            // sharedpreferences.
             String profileId = intent.getString("publisherId");
-            Log.d("INTENT PROFILE", "Not null "+profileId);
+            Log.d("INTENT PROFILE", "Not null " + profileId);
 
             // PROFILE
-            getSharedPreferences("PREFS", MODE_PRIVATE).edit().putString("profileid", profileId).apply();
+            SharedPreferences sharedPreferences = context.getSharedPreferences("PREFS", MODE_PRIVATE);
+            sharedPreferences.edit().putString("profileid", profileId).apply();
 
+            Log.d("MAIN ACTIVITY INSIDE BUNDLE CHECK", getSharedPreferences("PREFS", MODE_PRIVATE).getString("profileid", "none"));
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
-            bottomNavigationView.setSelectedItemId(R.id.nav_profile);
+
+
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
         }

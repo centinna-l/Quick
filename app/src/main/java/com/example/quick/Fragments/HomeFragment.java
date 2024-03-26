@@ -164,6 +164,7 @@ public class HomeFragment extends Fragment {
                     if (countStory > 0)
                         storyList.add(story);
                 }
+                Log.d("STORY LIST", "Count"+storyList.size());
                 storyAdapter.notifyDataSetChanged();
             }
 

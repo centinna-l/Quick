@@ -81,7 +81,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
                     ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
                 } else {
-                    Log.d("Item VIEW", "Not a Fragment "+ user.getUsername());
+                    Log.d("Item VIEW", "Not a Fragment "+ user.getId());
                     Intent intent = new Intent(mContext, MainActivity.class);
                     intent.putExtra("publisherId", user.getId());
                     mContext.startActivity(intent);

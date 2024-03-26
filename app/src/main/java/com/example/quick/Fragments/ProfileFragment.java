@@ -91,9 +91,9 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        SharedPreferences prefs = getContext().getSharedPreferences("PREFS" , Context.MODE_PRIVATE);
+        SharedPreferences prefs = requireContext().getSharedPreferences("PREFS" , Context.MODE_PRIVATE);
         Log.d("SHARED PREF START PROFILE", prefs.getString("profileid","none"));
-        profileid = prefs.getString("profileid" , "none");
+        profileid = prefs.getString("profileid" , firebaseUser.getUid());
 
 
         image_profile = view.findViewById(R.id.image_profile);
