@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -59,6 +60,7 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_edit_profile);
         close = findViewById(R.id.close);
         image_profile = findViewById(R.id.image_profile);
@@ -106,6 +108,8 @@ public class EditProfileActivity extends AppCompatActivity {
                     Intent data = result.getData();
                     imageUri = data.getData();
                     image_profile.setImageURI(imageUri);
+
+
 
                     saveData();
                 } else {
